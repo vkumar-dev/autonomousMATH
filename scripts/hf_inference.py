@@ -64,8 +64,9 @@ def generate_with_llama_cpp(
     )
 
     system = (
-        "You write original mathematical essays in HTML. "
-        "Follow the user's format exactly. Return only the HTML article."
+        "You are an expert mathematical essay writer. "
+        "Do NOT output thinking tags or reasoning preambles. "
+        "Immediately output the complete valid HTML article matching the requested format."
     )
     try:
         result = llm.create_chat_completion(
@@ -139,7 +140,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Local Hugging Face GGUF inference")
     parser.add_argument("--prompt", help="Prompt text")
     parser.add_argument("--prompt-file", help="Path to a prompt file")
-    parser.add_argument("--max-tokens", type=int, default=int(os.environ.get("LLAMA_MAX_TOKENS", "3072")))
+    parser.add_argument("--max-tokens", type=int, default=int(os.environ.get("LLAMA_MAX_TOKENS", "4096")))
     parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--model-dir", default=str(DEFAULT_MODEL_DIR))
     args = parser.parse_args()
