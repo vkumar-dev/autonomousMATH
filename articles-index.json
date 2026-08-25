@@ -1,6 +1,25 @@
 {
   "articles": [
     {
+      "title": "The Minimum Entropy of a Ramsey-Forcing Coloring",
+      "date": "2026-08-25T18:39:35.000Z",
+      "theme": "cotton-candy",
+      "topic": "The discrete side of Ramsey Theory",
+      "contentType": "article",
+      "excerpt": "Why does finding a monochromatic subgraph cost information? A toy model of the informational price of Ramsey's theorem.",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Ramsey Theory",
+        "Discrete",
+        "Generalization Game",
+        "entropy",
+        "code",
+        "channel"
+      ],
+      "path": "2026/08/25/2026-08-25-18-39-35_the-minimum-entropy-of-a-ramsey-forcing-coloring.html"
+    },
+    {
       "title": "The Dimension of the Heat-Flow Fractal",
       "date": "2026-08-25T17:34:48.000Z",
       "theme": "forest-calm",
@@ -20,6 +39,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 1,
-  "lastBuilt": "2026-08-25T17:45:53.083Z"
+  "total": 2,
+  "lastBuilt": "2026-08-25T18:47:00.121Z"
 }
