@@ -1,0 +1,51 @@
+/* Paper & Ink Theme */
+.theme-paper-ink {
+  --bg-primary: #f4f1ea;
+  --bg-secondary: #e8e4dc;
+  --text-primary: #2c2c2c;
+  --text-secondary: #5a5a5a;
+  --accent-primary: #8b4513;
+  --accent-secondary: #a0522d;
+  --nav-border: rgba(139, 69, 19, 0.2);
+}
+
+.theme-paper-ink {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.theme-paper-ink body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.theme-paper-ink .article-title {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+.theme-paper-ink h2 {
+  font-family: 'Georgia', serif;
+  border-bottom: 2px solid var(--accent-primary);
+}
+
+.theme-paper-ink .meta-type {
+  background: var(--accent-primary);
+  color: white;
+  font-family: 'Courier New', monospace;
+}
+
+.theme-paper-ink blockquote {
+  border-left: 4px solid var(--accent-primary);
+  background: rgba(139, 69, 19, 0.05);
+  font-style: italic;
+}
+
+.theme-paper-ink code {
+  font-family: 'Courier New', monospace;
+  background: rgba(139, 69, 19, 0.1);
+}
+
+.theme-paper-ink .article-excerpt {
+  font-style: italic;
+}

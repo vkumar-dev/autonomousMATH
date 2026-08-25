@@ -1,0 +1,34 @@
+/* Minimalist Clean Theme */
+.theme-minimalist-clean {
+  --bg-primary: #ffffff;
+  --bg-secondary: #fafafa;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --accent-primary: #000000;
+  --accent-secondary: #666666;
+  --nav-border: rgba(0, 0, 0, 0.1);
+}
+
+.theme-minimalist-clean {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.theme-minimalist-clean .article-title {
+  letter-spacing: -0.03em;
+}
+
+.theme-minimalist-clean h2 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.theme-minimalist-clean .meta-type {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.theme-minimalist-clean blockquote {
+  border-left-color: var(--accent-primary);
+  background: var(--bg-secondary);
+}

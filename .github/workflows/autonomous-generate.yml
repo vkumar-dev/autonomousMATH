@@ -1,0 +1,129 @@
+name: Autonomous Math Question (HF GGUF)
+
+on:
+  schedule:
+    # π-time: 03:14 UTC every day
+    - cron: '14 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-article:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    env:
+      HF_HOME: ${{ github.workspace }}/.hf
+      LLAMA_MODEL_DIR: ${{ github.workspace }}/.models
+      HF_HUB_DISABLE_PROGRESS_BARS: "1"
+      MODEL_MIN_PARAMS: "3B"
+      MODEL_MAX_PARAMS: "7B"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install Hugging Face CLI
+        run: |
+          curl -LsSf https://hf.co/cli/install.sh | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/hf" --version
+
+      - name: Install Python inference dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install huggingface_hub
+          pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu || pip install llama-cpp-python
+
+      - name: Install Node.js dependencies
+        run: |
+          npm init -y
+          npm install --no-save gray-matter
+
+      - name: Discover public non-gated GGUF model
+        id: model
+        run: |
+          echo "Selecting latest suitable open non-gated llama.cpp model…"
+          python scripts/model_resolver.py | tee resolver-output.json
+          MODEL_ID=$(python -c "import json; print(json.load(open('selected-model.json'))['model'])")
+          QUANT=$(python -c "import json; print(json.load(open('selected-model.json'))['quantization'])")
+          echo "model=$MODEL_ID" >> "$GITHUB_OUTPUT"
+          echo "quant=$QUANT" >> "$GITHUB_OUTPUT"
+          echo "Selected $MODEL_ID ($QUANT)"
+
+      - name: Cache GGUF weights
+        uses: actions/cache@v4
+        with:
+          path: |
+            .models
+            .hf
+          key: ${{ runner.os }}-gguf-${{ hashFiles('selected-model.json') }}
+          restore-keys: |
+            ${{ runner.os }}-gguf-
+
+      - name: Select matrix seed
+        id: topic
+        run: |
+          node scripts/random-topic-selector.js
+          TOPIC=$(node -e "console.log(JSON.parse(require('fs').readFileSync('selected-topic.json')).topic)")
+          WORDS=$(node -e "console.log((JSON.parse(require('fs').readFileSync('selected-topic.json')).wordList || []).join(', '))")
+          echo "topic=$TOPIC" >> "$GITHUB_OUTPUT"
+          echo "words=$WORDS" >> "$GITHUB_OUTPUT"
+          echo "Seed: $TOPIC"
+          echo "Words: $WORDS"
+
+      - name: Generate article with local HF GGUF inference
+        timeout-minutes: 40
+        run: |
+          echo "Pondering a new mathematical question…"
+          node scripts/generate-article.js
+
+      - name: Configure Git
+        run: |
+          git config user.name 'autonomousMATH Bot'
+          git config user.email 'autonomousmath@github-actions.local'
+
+      - name: Build article index and content cache
+        run: |
+          node scripts/build-article-index.js
+          node scripts/build-articles-content.js
+        continue-on-error: true
+
+      - name: Commit and push article
+        run: |
+          git add articles/ articles-index.json articles-content.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "π Auto-generated question: $(date -u +%Y-%m-%d)"
+          if git push origin main; then
+            echo "Article committed and pushed"
+          else
+            git pull --rebase origin main
+            git push origin main
+          fi
+
+      - name: Show summary
+        if: always()
+        run: |
+          echo "Workflow summary"
+          echo "  Seed: ${{ steps.topic.outputs.topic }}"
+          echo "  Words: ${{ steps.topic.outputs.words }}"
+          echo "  Model: ${{ steps.model.outputs.model }}"
+          echo "  Quant: ${{ steps.model.outputs.quant }}"
+          echo "  Schedule: 03:14 UTC (π-time)"

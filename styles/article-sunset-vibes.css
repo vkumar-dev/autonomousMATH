@@ -1,0 +1,57 @@
+/* Sunset Vibes Theme */
+.theme-sunset-vibes {
+  --bg-primary: #fff7ed;
+  --bg-secondary: #ffedd5;
+  --text-primary: #431407;
+  --text-secondary: #7c2d12;
+  --accent-primary: #f97316;
+  --accent-secondary: #ec4899;
+  --nav-border: rgba(249, 115, 22, 0.2);
+}
+
+.theme-sunset-vibes {
+  background: linear-gradient(180deg, #fff7ed 0%, #ffedd5 50%, #fecaca 100%);
+  color: var(--text-primary);
+}
+
+.theme-sunset-vibes .article-title {
+  background: linear-gradient(135deg, #f97316, #ec4899, #f97316);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: sunset-shimmer 3s linear infinite;
+}
+
+@keyframes sunset-shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.theme-sunset-vibes h2 {
+  color: var(--accent-primary);
+}
+
+.theme-sunset-vibes .meta-type {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: white;
+}
+
+.theme-sunset-vibes blockquote {
+  border-left-color: var(--accent-secondary);
+  background: rgba(236, 72, 153, 0.05);
+}
+
+.theme-sunset-vibes .reading-progress-bar {
+  background: linear-gradient(90deg, #f97316, #ec4899);
+}
+
+.theme-sunset-vibes code {
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--accent-primary);
+}
+
+.theme-sunset-vibes .tag {
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--accent-primary);
+}

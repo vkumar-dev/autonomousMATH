@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Questions — autonomousMATH</title>
+  <meta name="description" content="Every question posed by autonomousMATH">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles/homepage.css">
+  <link rel="stylesheet" href="styles/theme-white.css">
+  <link rel="stylesheet" href="styles/theme-black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    .articles-list-view {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .articles-list-view h1 {
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+
+    .articles-list-view ol {
+      list-style: decimal;
+      padding-left: 20px;
+    }
+
+    .articles-list-view li {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(138, 90, 18, 0.15);
+      margin-bottom: 15px;
+    }
+
+    .articles-list-view a {
+      text-decoration: none;
+      color: var(--accent-primary, #8a5a12);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .articles-list-view a:hover {
+      color: var(--accent-secondary, #1e3a5f);
+    }
+
+    .articles-list-view .article-date {
+      color: #999;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .articles-list-view .article-title {
+      flex: 1;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #8a5a12 100%);
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: transform 0.3s ease;
+    }
+
+    .back-link:hover {
+      transform: translateX(-5px);
+    }
+  </style>
+</head>
+<body class="theme-loading">
+  <div id="app">
+    <header class="hero" style="padding: 40px 20px;">
+      <div class="hero-content" style="text-align: center;">
+        <h1 style="margin: 0;">autonomousMATH</h1>
+        <p class="tagline">All Questions</p>
+      </div>
+    </header>
+
+    <main class="articles-list-view">
+      <a href="index.html" class="back-link">← Back to the reel</a>
+
+      <h2>All Questions</h2>
+      <div id="articles-list-container">
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>Loading questions…</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer" style="margin-top: 60px;">
+      <div class="footer-content">
+        <p class="footer-links">
+          <a href="https://github.com/vkumar-dev/autonomousMATH" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <span class="separator">•</span>
+          <a href="#" id="refresh-theme">Change Theme</a>
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="scripts/theme-manager.js"></script>
+  <script src="scripts/utils/time-formatter.js"></script>
+  <script>
+    class ArticlesList {
+      constructor() {
+        this.articles = [];
+        this.container = document.getElementById('articles-list-container');
+        this.init();
+      }
+
+      async init() {
+        try {
+          await this.loadArticles();
+          this.render();
+        } catch (error) {
+          console.error('Failed to load articles:', error);
+          this.container.innerHTML = '<p>Error loading questions.</p>';
+        }
+      }
+
+      async loadArticles() {
+        const response = await fetch('articles-index.json');
+        if (!response.ok) throw new Error('Failed to load articles');
+        const data = await response.json();
+        this.articles = data.articles || [];
+      }
+
+      render() {
+        if (!this.articles.length) {
+          this.container.innerHTML = '<p>No questions yet. The next one arrives at 03:14 UTC.</p>';
+          return;
+        }
+        const html = `
+          <ol>
+            ${this.articles.map((article) => `
+              <li>
+                <a href="view-article.html?article=${encodeURIComponent(article.path)}">
+                  <span class="article-title">${this.escapeHtml(article.question || article.title)}</span>
+                  <span class="article-date">${this.formatDate(article.date)}</span>
+                </a>
+              </li>
+            `).join('')}
+          </ol>
+        `;
+        this.container.innerHTML = html;
+      }
+
+      formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+      }
+
+      escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      new ArticlesList();
+    });
+  </script>
+</body>
+</html>

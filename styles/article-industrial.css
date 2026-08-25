@@ -1,0 +1,81 @@
+/* Industrial Theme */
+.theme-industrial {
+  --bg-primary: #1c1c1c;
+  --bg-secondary: #2a2a2a;
+  --text-primary: #e5e5e5;
+  --text-secondary: #a0a0a0;
+  --accent-primary: #f59e0b;
+  --accent-secondary: #ef4444;
+  --nav-border: rgba(245, 158, 11, 0.3);
+}
+
+.theme-industrial {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.theme-industrial .article-title {
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.theme-industrial h2 {
+  background: var(--bg-secondary);
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--accent-primary);
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.theme-industrial .meta-type {
+  background: var(--accent-primary);
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.theme-industrial .meta-theme {
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.theme-industrial blockquote {
+  border-left: 6px solid var(--accent-primary);
+  background: var(--bg-secondary);
+  padding: 1rem 1.5rem;
+  font-weight: 500;
+}
+
+.theme-industrial code {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--accent-primary);
+}
+
+.theme-industrial pre {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.theme-industrial .reading-progress-bar {
+  background: var(--accent-primary);
+  height: 4px;
+}
+
+.theme-industrial .tag {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.theme-industrial hr {
+  border: none;
+  height: 2px;
+  background: var(--bg-secondary);
+}

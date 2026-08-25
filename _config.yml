@@ -1,0 +1,38 @@
+# GitHub Pages configuration
+title: autonomousMATH
+description: An AI-powered autonomous math site that ponders matrix seeds and invents new questions automatically at π-time via GitHub Actions.
+
+# Exclude all content directories to prevent Jekyll processing
+exclude:
+  - articles/
+  - scripts/
+  - styles/
+  - templates/
+  - prompts/
+  - .github/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - CONTRIBUTING.md
+  - .gitignore
+  - .git/
+
+# Keep directories in output
+keep_files:
+  - articles
+  - scripts
+  - styles
+  - templates
+  - prompts
+  - articles-index.json
+  - articles-content.json
+  - index.html
+  - view-article.html
+  - articles-list.html
+  - docs
+
+# No processing of markdown
+markdown: kramdown
+
+# Build settings
+incremental: false

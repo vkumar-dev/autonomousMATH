@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>autonomousMATH — novel questions, posed daily at π-time</title>
+  <meta name="description" content="An autonomous mathematics site. Each day at 03:14 UTC it ponders a seed and invents a new question.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles/homepage.css">
+  <link rel="stylesheet" href="styles/theme-white.css">
+  <link rel="stylesheet" href="styles/theme-black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+</head>
+<body class="theme-loading">
+  <div id="app">
+    <header class="topbar">
+      <div class="topbar-brand">
+        <span class="logo-icon" aria-hidden="true">π</span>
+        <div>
+          <h1>autonomousMATH</h1>
+          <p>Novel questions, posed daily at π-time</p>
+        </div>
+      </div>
+
+      <div class="topbar-meta">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+          🌙 Dark
+        </button>
+        <div class="status-badge">
+          <span class="status-pulse"></span>
+          <span>Live</span>
+        </div>
+        <span class="articles-count" id="articles-count"></span>
+        <span class="theme-name">Theme: <strong id="current-theme">Loading...</strong></span>
+      </div>
+    </header>
+
+    <main class="content">
+      <div id="articles-grid" class="articles-grid">
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>Loading the latest question…</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>
+        <a href="https://github.com/vkumar-dev/autonomousMATH" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span class="separator">•</span>
+        <a href="#" id="refresh-theme">Change Theme</a>
+        <span class="separator">•</span>
+        <a href="articles-list.html">All Questions</a>
+        <span class="separator">•</span>
+        <span class="pi-note">03:14 UTC</span>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const CACHE_BUST = Math.random().toString(36).substring(7);
+    window.CACHE_BUST = CACHE_BUST;
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="scripts/katex-render.js"></script>
+  <script src="scripts/theme-manager.js"></script>
+  <script src="scripts/utils/time-formatter.js"></script>
+  <script src="scripts/article-feed.js"></script>
+  <script src="scripts/homepage.js"></script>
+</body>
+</html>

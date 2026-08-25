@@ -1,0 +1,40 @@
+/* Chalkboard lecture theme */
+.article-page.chalkboard,
+body.chalkboard {
+  --bg-primary: #163028;
+  --bg-secondary: #1c3b31;
+  --text-primary: #f4efe2;
+  --text-secondary: #d9d0b8;
+  --accent-color: #e8c547;
+  --accent-rgb: 232, 197, 71;
+  --card-bg: rgba(22, 48, 40, 0.92);
+  --card-border: rgba(232, 197, 71, 0.25);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(232, 197, 71, 0.08), transparent 36%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.015) 0 1px,
+      transparent 1px 28px
+    ),
+    #163028;
+  color: var(--text-primary);
+  font-family: "Source Serif 4", "EB Garamond", Georgia, serif;
+}
+
+.chalkboard h1,
+.chalkboard h2,
+.chalkboard h3 {
+  color: #f7e7a1;
+  font-weight: 600;
+}
+
+.chalkboard a {
+  color: #9ad7c8;
+}
+
+.chalkboard .posed-question,
+.chalkboard .fun-fact,
+.chalkboard .key-takeaway {
+  background: rgba(247, 231, 161, 0.08);
+  border-color: #e8c547;
+}

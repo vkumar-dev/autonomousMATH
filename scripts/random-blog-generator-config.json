@@ -1,0 +1,99 @@
+{
+  "categories": [
+    "Number Theory", "Prime Numbers", "Analytic Number Theory", "Algebraic Number Theory",
+    "Abstract Algebra", "Linear Algebra", "Group Theory", "Ring Theory", "Field Theory",
+    "Galois Theory", "Representation Theory", "Homological Algebra", "Category Theory",
+    "Real Analysis", "Complex Analysis", "Functional Analysis", "Harmonic Analysis",
+    "Measure Theory", "Fourier Analysis", "Ordinary Differential Equations",
+    "Partial Differential Equations", "Dynamical Systems", "Ergodic Theory", "Chaos Theory",
+    "Topology", "Algebraic Topology", "Differential Geometry", "Algebraic Geometry",
+    "Riemannian Geometry", "Symplectic Geometry", "Knot Theory", "Manifolds",
+    "Combinatorics", "Graph Theory", "Ramsey Theory", "Additive Combinatorics",
+    "Probability", "Stochastic Processes", "Statistics", "Information Theory",
+    "Mathematical Logic", "Set Theory", "Model Theory", "Proof Theory",
+    "Recursion Theory", "Gödel Incompleteness", "Constructive Mathematics",
+    "Computational Complexity", "Algorithms", "Discrete Mathematics",
+    "Game Theory", "Optimization", "Convex Geometry", "Linear Programming",
+    "Numerical Analysis", "Approximation Theory", "Special Functions",
+    "Fractals", "Cellular Automata", "Tilings", "Symmetry",
+    "Infinity and Cardinals", "π and Mathematical Constants", "Continued Fractions",
+    "Cryptography", "Coding Theory", "Spectral Graph Theory", "Tropical Geometry",
+    "Nonstandard Analysis", "Mathematical Physics", "Quantum Information",
+    "Random Matrices", "Percolation", "Enumerative Combinatorics"
+  ],
+  "wordLists": [
+    ["prime", "gap", "sieve", "infinity", "density"],
+    ["manifold", "curvature", "geodesic", "tangent", "metric"],
+    ["group", "homomorphism", "kernel", "quotient", "action"],
+    ["limit", "epsilon", "sequence", "compact", "complete"],
+    ["graph", "eigenvalue", "spectrum", "walk", "cut"],
+    ["probability", "expectation", "martingale", "tail", "concentration"],
+    ["proof", "axiom", "model", "consistency", "undecidable"],
+    ["pi", "series", "convergence", "irrational", "transcendental"],
+    ["knot", "linking", "polynomial", "invariant", "unknot"],
+    ["tiling", "symmetry", "lattice", "aperiodic", "period"],
+    ["chaos", "attractor", "orbit", "bifurcation", "sensitive"],
+    ["cardinal", "ordinal", "continuum", "choice", "infinity"],
+    ["algorithm", "complexity", "reduction", "oracle", "hardness"],
+    ["entropy", "code", "channel", "mutual", "compression"],
+    ["curve", "genus", "divisor", "zeta", "rational point"],
+    ["operator", "spectrum", "self-adjoint", "compact", "resolvent"],
+    ["game", "equilibrium", "strategy", "payoff", "saddle"],
+    ["fractal", "dimension", "self-similar", "measure", "iterate"],
+    ["module", "exact", "functor", "derived", "ext"],
+    ["random", "matrix", "eigenvalue", "gap", "universality"]
+  ],
+  "genres": [
+    "Question Essay", "Proof Sketch", "Thought Experiment", "Paradox Exploration",
+    "Historical Analysis", "Conceptual Overview", "Worked Example",
+    "Counterexample Hunt", "What-If Analysis", "Socratic Dialogue",
+    "Myth-Busting", "Research Vignette", "Intuition Pump",
+    "Definition Unpacking", "Analogy Construction", "Open Problem Survey",
+    "Toy Model", "Visual Argument", "Computational Experiment",
+    "Philosophical Inquiry", "Error Autopsy", "Generalization Game"
+  ],
+  "writingStyles": [
+    "Academic & Formal", "Conversational & Casual", "Narrative & Engaging",
+    "Technical & Precise", "Poetic & Lyrical", "Humorous & Satirical",
+    "Socratic & Questioning", "Philosophical & Contemplative",
+    "Witty & Clever", "Accessible & Simple", "Abstract & Theoretical",
+    "Enthusiastic & Energetic", "Skeptical & Analytical", "Visionary & Bold",
+    "Chalkboard Lecture", "Letter from a Mathematician"
+  ],
+  "storytellingMethods": [
+    "Question-Answer Format", "Spiral Discovery", "Proof by Contradiction Narrative",
+    "Special-to-General", "Counterexample First", "Historical Context",
+    "Thought Experiment", "Toy Example then Leap", "Dialogue",
+    "Layered Complexity", "Before-After Comparison", "Cause-Effect Chain",
+    "Thematic Exploration", "Worked Calculation", "Picture then Formalism",
+    "What Breaks If We Drop an Axiom"
+  ],
+  "perspectives": [
+    "Historical", "Modern", "Euclidean", "Non-Euclidean", "Constructive",
+    "Platonist", "Formalist", "Intuitionist", "Computational", "Probabilistic",
+    "Geometric", "Algebraic", "Analytic", "Combinatorial", "Physical",
+    "Skeptical", "Playful", "Foundational", "Applied", "Pure",
+    "Finite", "Infinite", "Discrete", "Continuous", "Categorical"
+  ],
+  "depthLevels": [
+    "Introduction to Basics", "Intermediate Understanding", "Advanced Exploration",
+    "Expert Deep Dive", "Popular Mathematics", "Thought Experiment",
+    "Olympiad Flavor", "Research Adjacent"
+  ],
+  "targetAudiences": [
+    "Curious Minds", "Students & Learners", "Math Enthusiasts",
+    "Working Mathematicians", "Teachers", "Computer Scientists",
+    "Physicists", "Puzzle Solvers", "Beginners", "Researchers"
+  ],
+  "angles": [
+    "The unexpected connection", "A forgotten history", "The hidden mechanics",
+    "A paradox that breaks intuition", "What if the opposite were true?",
+    "The simplest example that still surprises", "A counterexample that changes everything",
+    "If we could compute the incomputable", "The invariant nobody notices",
+    "A question Euclid could not have asked", "The finite shadow of an infinite fact",
+    "Why the obvious proof is wrong", "A toy model of a deep theorem",
+    "The constant that should not exist", "When uniqueness fails",
+    "A map that cannot be drawn", "The cost of dropping an axiom",
+    "A random process with a deterministic secret", "The geometry hiding in the algebra"
+  ]
+}

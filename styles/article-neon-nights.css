@@ -1,0 +1,59 @@
+/* Neon Nights Theme */
+.theme-neon-nights {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --accent-primary: #00ffff;
+  --accent-secondary: #ff00ff;
+  --nav-border: rgba(0, 255, 255, 0.2);
+}
+
+.theme-neon-nights {
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-primary);
+}
+
+.theme-neon-nights .article-title {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.3));
+}
+
+.theme-neon-nights h2 {
+  color: var(--accent-primary);
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.theme-neon-nights .meta-type {
+  background: rgba(0, 255, 255, 0.15);
+  color: var(--accent-primary);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.theme-neon-nights .meta-theme {
+  background: rgba(255, 0, 255, 0.15);
+  color: var(--accent-secondary);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+}
+
+.theme-neon-nights blockquote {
+  border-left-color: var(--accent-secondary);
+  background: rgba(255, 0, 255, 0.05);
+}
+
+.theme-neon-nights .reading-progress-bar {
+  box-shadow: 0 0 10px var(--accent-primary);
+}
+
+.theme-neon-nights code {
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--accent-primary);
+}
+
+.theme-neon-nights pre {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+}

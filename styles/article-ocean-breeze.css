@@ -1,0 +1,60 @@
+/* Ocean Breeze Theme */
+.theme-ocean-breeze {
+  --bg-primary: #f0f9ff;
+  --bg-secondary: #e0f2fe;
+  --text-primary: #0c4a6e;
+  --text-secondary: #334155;
+  --accent-primary: #0284c7;
+  --accent-secondary: #06b6d4;
+  --nav-border: rgba(2, 132, 199, 0.2);
+}
+
+.theme-ocean-breeze {
+  background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 50%, #cffafe 100%);
+  color: var(--text-primary);
+}
+
+.theme-ocean-breeze .article-title {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.theme-ocean-breeze h2 {
+  color: var(--accent-primary);
+  position: relative;
+}
+
+.theme-ocean-breeze h2::after {
+  content: '~~~';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  color: var(--accent-secondary);
+  opacity: 0.5;
+}
+
+.theme-ocean-breeze .meta-type {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.2), rgba(6, 182, 212, 0.2));
+  color: var(--accent-primary);
+}
+
+.theme-ocean-breeze blockquote {
+  border-left-color: var(--accent-secondary);
+  background: rgba(6, 182, 212, 0.05);
+}
+
+.theme-ocean-breeze .reading-progress-bar {
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+}
+
+.theme-ocean-breeze code {
+  background: rgba(2, 132, 199, 0.1);
+  color: var(--accent-primary);
+}
+
+.theme-ocean-breeze .tag {
+  background: rgba(2, 132, 199, 0.1);
+  color: var(--accent-primary);
+}

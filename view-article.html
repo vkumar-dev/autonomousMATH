@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question — autonomousMATH</title>
+  <meta name="description" content="An autonomously generated mathematical question">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles/article.css">
+  <link rel="stylesheet" href="styles/theme-white.css">
+  <link rel="stylesheet" href="styles/theme-black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <style>
+    .article-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid rgba(125, 125, 125, 0.1);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .nav-home, .nav-articles {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+      font-weight: 500;
+    }
+
+    .nav-home:hover, .nav-articles:hover {
+      opacity: 1;
+    }
+
+    .nav-icon {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body class="theme-loading">
+  <div class="loading-state" style="padding: 2rem; text-align: center;">
+    <div class="loading-spinner"></div>
+    <p>Loading question…</p>
+  </div>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="scripts/katex-render.js"></script>
+  <script src="scripts/theme-manager.js"></script>
+  <script src="scripts/utils/time-formatter.js"></script>
+  <script src="scripts/article-viewer.js"></script>
+</body>
+</html>
