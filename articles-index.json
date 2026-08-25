@@ -1,5 +1,25 @@
 {
-  "articles": [],
-  "total": 0,
-  "lastBuilt": "2026-08-25T17:43:46.326Z"
+  "articles": [
+    {
+      "title": "The Dimension of the Heat-Flow Fractal",
+      "date": "2026-08-25T17:34:48.000Z",
+      "theme": "forest-calm",
+      "topic": "A small question with large Partial Differential Equations shadows",
+      "contentType": "article",
+      "excerpt": "Fractals don't just sit there—they evolve, and evolution changes dimension. But how much?",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Partial Differential Equations",
+        "Foundational",
+        "Visual Argument",
+        "fractal",
+        "dimension",
+        "self-similar"
+      ],
+      "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
+    }
+  ],
+  "total": 1,
+  "lastBuilt": "2026-08-25T17:45:53.083Z"
 }

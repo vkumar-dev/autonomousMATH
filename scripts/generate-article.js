@@ -182,7 +182,20 @@ async function generateArticle() {
 
   console.log('Running local Hugging Face GGUF inference…');
   let content = callHfInference(prompt);
-  content = content.replace(/^\s*```html\s*\n/i, '').replace(/^\s*```\s*\n/i, '').replace(/\n\s*```\s*$/i, '');
+
+  // Strip reasoning / think tags if present
+  content = content.replace(/<think>[\s\S]*?<\/think>/gi, '');
+  // Extract HTML block if enclosed in code fences or starting at frontmatter/article
+  const codeBlockMatch = content.match(/```(?:html)?\s*\n([\s\S]*?)\n```/i);
+  if (codeBlockMatch) {
+    content = codeBlockMatch[1];
+  } else {
+    const htmlStartMatch = content.match(/<!--[\s\S]*|<article[\s\S]*/i);
+    if (htmlStartMatch) {
+      content = htmlStartMatch[0];
+    }
+  }
+  content = content.trim();
 
   const title = extractTitle(content, topicData.topic);
   const question = extractQuestion(content, title);
