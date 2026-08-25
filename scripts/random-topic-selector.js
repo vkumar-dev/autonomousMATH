@@ -11,6 +11,37 @@ const path = require('path');
 
 const CONFIG_FILE = path.join(__dirname, 'random-blog-generator-config.json');
 const TOPIC_OUTPUT = path.join(__dirname, '..', 'selected-topic.json');
+const INDEX_FILE = path.join(__dirname, '..', 'articles-index.json');
+
+// Keep mathematical vocabulary aligned with the selected category. The fallback
+// remains available for new categories, but unrelated word-list/category pairs
+// are now strongly discouraged.
+const FAMILY_HINTS = [
+  [['prime', 'number', 'analytic', 'arithmetic', 'continued fraction'], ['prime', 'gap', 'sieve', 'infinity', 'density']],
+  [['geometry', 'topology', 'manifold', 'knot', 'tiling', 'fractal'], ['manifold', 'curvature', 'geodesic', 'tangent', 'metric']],
+  [['algebra', 'group', 'ring', 'field', 'module', 'category', 'representation'], ['group', 'homomorphism', 'kernel', 'quotient', 'action']],
+  [['analysis', 'measure', 'fourier', 'function', 'operator', 'differential', 'dynamical', 'ergodic'], ['limit', 'epsilon', 'sequence', 'compact', 'complete']],
+  [['graph', 'combinatorics', 'ramsey', 'spectral', 'percolation'], ['graph', 'eigenvalue', 'spectrum', 'walk', 'cut']],
+  [['probability', 'stochastic', 'statistics', 'random', 'information', 'entropy', 'coding'], ['probability', 'expectation', 'martingale', 'tail', 'concentration']],
+  [['logic', 'set', 'model', 'proof', 'recursion', 'gödel', 'constructive'], ['proof', 'axiom', 'model', 'consistency', 'undecidable']],
+  [['algorithm', 'complexity', 'cryptography', 'optimization', 'programming'], ['algorithm', 'complexity', 'reduction', 'oracle', 'hardness']]
+];
+
+function recentTopics() {
+  try {
+    const index = JSON.parse(fs.readFileSync(INDEX_FILE, 'utf8'));
+    return (index.articles || []).slice(0, 60).map((article) =>
+      `${article.category || ''} ${article.topic || ''} ${article.title || ''}`.toLowerCase());
+  } catch (_) { return []; }
+}
+
+function wordListScore(category, words) {
+  const text = category.toLowerCase();
+  const wordText = words.join(' ').toLowerCase();
+  const family = FAMILY_HINTS.find(([hints]) => hints.some((hint) => text.includes(hint)));
+  if (!family) return 0.25;
+  return family[1].some((word) => wordText.includes(word.split(' ')[0])) ? 1 : 0;
+}
 
 function loadConfig() {
   return JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
@@ -24,7 +55,11 @@ function generateRandomTopic() {
   const config = loadConfig();
 
   const category = pickRandom(config.categories);
-  const wordList = pickRandom(config.wordLists || [[category.toLowerCase()]]);
+  const wordLists = config.wordLists || [[category.toLowerCase()]];
+  const rankedLists = wordLists
+    .map((words) => ({ words, score: wordListScore(category, words) + Math.random() * 0.15 }))
+    .sort((a, b) => b.score - a.score);
+  const wordList = pickRandom(rankedLists.slice(0, Math.max(1, Math.ceil(rankedLists.length * 0.3))).map((item) => item.words));
   const genre = pickRandom(config.genres);
   const style = pickRandom(config.writingStyles);
   const method = pickRandom(config.storytellingMethods);
@@ -46,7 +81,12 @@ function generateRandomTopic() {
     `A small question with large ${category} shadows`
   ];
 
-  const selectedTopic = pickRandom(templates);
+  const history = recentTopics();
+  const candidates = templates.filter((template) => {
+    const signature = `${category} ${wordList.slice(0, 3).join(' ')} ${template}`.toLowerCase();
+    return !history.some((old) => signature.split(/\s+/).filter((token) => token.length > 4).filter((token) => old.includes(token)).length >= 4);
+  });
+  const selectedTopic = pickRandom(candidates.length ? candidates : templates);
 
   const wordCountMap = {
     'Introduction to Basics': 700,
@@ -78,6 +118,7 @@ function generateRandomTopic() {
     type: genre,
     keywords: [category, perspective, genre, ...wordList.slice(0, 3)],
     estimatedWords
+    ,selection: { wordListAlignment: wordListScore(category, wordList), historySize: history.length }
   };
 }
 
