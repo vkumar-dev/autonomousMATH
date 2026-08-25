@@ -82,6 +82,9 @@ class ArticleFeed {
         .map((article, index) => this.createArticlePage(article, startIndex + index === 0))
         .join('');
       sentinel.insertAdjacentHTML('beforebegin', newHTML);
+      if (typeof window.renderMath === 'function') {
+        window.renderMath(feedContainer);
+      }
     }
 
     this.currentPage += 1;

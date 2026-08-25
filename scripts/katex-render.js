@@ -13,20 +13,29 @@
     ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
   };
 
+  let attempts = 0;
+
   function renderMath(root) {
-    if (typeof renderMathInElement !== 'function') {
-      return;
-    }
-    try {
-      renderMathInElement(root || document.body, options);
-    } catch (error) {
-      console.warn('[KaTeX]', error);
+    const target = root || document.body;
+    if (typeof renderMathInElement === 'function') {
+      try {
+        renderMathInElement(target, options);
+      } catch (error) {
+        console.warn('[KaTeX]', error);
+      }
+    } else if (attempts < 20) {
+      attempts += 1;
+      setTimeout(() => renderMath(target), 150);
     }
   }
 
   window.renderMath = renderMath;
 
-  document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMath(document.body);
+    });
+  } else {
     renderMath(document.body);
-  });
+  }
 })();

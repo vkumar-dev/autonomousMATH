@@ -229,6 +229,9 @@ class ArticleViewer {
     document.body.innerHTML = articleHtml;
     document.title = `${frontmatter.title || 'Question'} - autonomousMATH`;
     this.applyTheme(frontmatter.theme);
+    if (typeof window.renderMath === 'function') {
+      window.renderMath(document.body);
+    }
   }
 
   applyTheme(theme) {
