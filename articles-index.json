@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "title": "A myth-busting in Random Matrices",
+      "date": "2026-08-26T04:01:13.000Z",
+      "theme": "paper-ink",
+      "topic": "A myth-busting in Random Matrices",
+      "contentType": "Myth-Busting",
+      "excerpt": "A novel mathematical question grown from Random Matrices.",
+      "readingTime": 12,
+      "wordCount": 2268,
+      "keywords": [],
+      "path": "2026/08/26/2026-08-26-04-01-13_a-myth-busting-in-random-matrices.html"
+    },
+    {
       "title": "The Minimum Entropy of a Ramsey-Forcing Coloring",
       "date": "2026-08-25T18:39:35.000Z",
       "theme": "cotton-candy",
@@ -39,6 +51,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 2,
-  "lastBuilt": "2026-08-25T18:47:00.121Z"
+  "total": 3,
+  "lastBuilt": "2026-08-26T04:10:31.753Z"
 }
