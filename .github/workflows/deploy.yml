@@ -10,6 +10,11 @@ on:
       - 'styles/**'
       - 'templates/**'
       - 'scripts/**'
+  workflow_run:
+    workflows:
+      - Autonomous Math Question (HF GGUF)
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -23,6 +28,11 @@ concurrency:
 
 jobs:
   deploy:
+    # A GITHUB_TOKEN push from the generator does not recursively trigger a
+    # push workflow. Deploy explicitly after a successful generator run.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
