@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "title": "Quantum Information and the words entropy, code",
+      "date": "2026-08-27T14:06:40.000Z",
+      "theme": "ocean-breeze",
+      "topic": "Quantum Information and the words entropy, code",
+      "contentType": "Proof Sketch",
+      "excerpt": "A novel mathematical question grown from Quantum Information.",
+      "readingTime": 12,
+      "wordCount": 2272,
+      "keywords": [],
+      "path": "2026/08/27/2026-08-27-14-06-40_quantum-information-and-the-words-entropy-code.html"
+    },
+    {
       "title": "A myth-busting in Random Matrices",
       "date": "2026-08-26T04:01:13.000Z",
       "theme": "paper-ink",
@@ -51,6 +63,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 3,
-  "lastBuilt": "2026-08-26T04:10:31.753Z"
+  "total": 4,
+  "lastBuilt": "2026-08-27T14:15:40.253Z"
 }
