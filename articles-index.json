@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "title": "What Abstract Algebra still cannot answer",
+      "date": "2026-08-28T15:17:46.000Z",
+      "theme": "cotton-candy",
+      "topic": "What Abstract Algebra still cannot answer",
+      "contentType": "Myth-Busting",
+      "excerpt": "A novel mathematical question grown from Abstract Algebra.",
+      "readingTime": 11,
+      "wordCount": 2140,
+      "keywords": [],
+      "path": "2026/08/28/2026-08-28-15-17-46_what-abstract-algebra-still-cannot-answer.html"
+    },
+    {
       "title": "Quantum Information and the words entropy, code",
       "date": "2026-08-27T14:06:40.000Z",
       "theme": "ocean-breeze",
@@ -63,6 +75,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 4,
-  "lastBuilt": "2026-08-27T14:15:40.253Z"
+  "total": 5,
+  "lastBuilt": "2026-08-28T15:27:06.105Z"
 }
