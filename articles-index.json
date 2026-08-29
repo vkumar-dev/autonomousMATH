@@ -1,6 +1,25 @@
 {
   "articles": [
     {
+      "title": "The Tail of a Martingale",
+      "date": "2026-08-29T09:59:58.000Z",
+      "theme": "paper-ink",
+      "topic": "probability meets Cryptography",
+      "contentType": "article",
+      "excerpt": "We demand uniqueness in cryptography, but the martingale property often hides it in the tail.",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Cryptography",
+        "Categorical",
+        "Conceptual Overview",
+        "probability",
+        "expectation",
+        "martingale"
+      ],
+      "path": "2026/08/29/2026-08-29-09-59-58_the-tail-of-a-martingale.html"
+    },
+    {
       "title": "What Abstract Algebra still cannot answer",
       "date": "2026-08-28T15:17:46.000Z",
       "theme": "cotton-candy",
@@ -75,6 +94,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 5,
-  "lastBuilt": "2026-08-28T15:27:06.105Z"
+  "total": 6,
+  "lastBuilt": "2026-08-29T10:08:34.527Z"
 }
