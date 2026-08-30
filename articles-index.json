@@ -1,6 +1,18 @@
 {
   "articles": [
     {
+      "title": "The Tail of the Expectation",
+      "date": "2026-08-30T09:10:51.000Z",
+      "theme": "paper-ink",
+      "topic": "probability meets Partial Differential Equations",
+      "contentType": "Philosophical Inquiry",
+      "excerpt": "A novel mathematical question grown from Partial Differential Equations.",
+      "readingTime": 14,
+      "wordCount": 2628,
+      "keywords": [],
+      "path": "2026/08/30/2026-08-30-09-10-51_the-tail-of-the-expectation.html"
+    },
+    {
       "title": "The Tail of a Martingale",
       "date": "2026-08-29T09:59:58.000Z",
       "theme": "paper-ink",
@@ -94,6 +106,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 6,
-  "lastBuilt": "2026-08-29T10:08:34.527Z"
+  "total": 7,
+  "lastBuilt": "2026-08-30T09:20:41.322Z"
 }
