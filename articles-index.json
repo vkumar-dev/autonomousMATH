@@ -1,6 +1,25 @@
 {
   "articles": [
     {
+      "title": "A headline that is the question, or that frames the question",
+      "date": "2026-08-31T09:39:34.000Z",
+      "theme": "industrial",
+      "topic": "Continued Fractions: a applied question",
+      "contentType": "article",
+      "excerpt": "One sentence that states why the question is interesting.",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Continued Fractions",
+        "Applied",
+        "Historical Analysis",
+        "prime",
+        "gap",
+        "sieve"
+      ],
+      "path": "2026/08/31/2026-08-31-09-39-34_a-headline-that-is-the-question-or-that-frames-the-question.html"
+    },
+    {
       "title": "The Tail of the Expectation",
       "date": "2026-08-30T09:10:51.000Z",
       "theme": "paper-ink",
@@ -106,6 +125,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 7,
-  "lastBuilt": "2026-08-30T09:20:41.322Z"
+  "total": 8,
+  "lastBuilt": "2026-08-31T09:42:02.168Z"
 }
