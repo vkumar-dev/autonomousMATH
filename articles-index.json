@@ -1,6 +1,25 @@
 {
   "articles": [
     {
+      "title": "The novel question, as one or two plain sentences",
+      "date": "2026-09-01T08:36:02.000Z",
+      "theme": "chalkboard",
+      "topic": "Pondering Algebraic Topology through cardinal, ordinal, continuum",
+      "contentType": "article",
+      "excerpt": "The continuum hypothesis, a cornerstone of set theory, imposes a specific cardinality on the real numbers. In algebraic topology, the real projective plane is a space with interesting topological properties. How might this space's fundamental group be influenced by the continuum hypothesis?",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Algebraic Topology",
+        "Pure",
+        "Philosophical Inquiry",
+        "cardinal",
+        "ordinal",
+        "continuum"
+      ],
+      "path": "2026/09/01/2026-09-01-08-36-02_the-novel-question-as-one-or-two-plain-sentences.html"
+    },
+    {
       "title": "A headline that is the question, or that frames the question",
       "date": "2026-08-31T09:39:34.000Z",
       "theme": "industrial",
@@ -125,6 +144,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 8,
-  "lastBuilt": "2026-08-31T09:42:02.168Z"
+  "total": 9,
+  "lastBuilt": "2026-09-01T08:38:51.015Z"
 }
