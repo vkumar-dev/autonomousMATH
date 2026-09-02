@@ -1,0 +1,69 @@
+<!--
+---
+title: "A headline that is the question, or that frames the question"
+topic: "An open-looking question in Recursion Theory"
+question: "What if the game of strategy is played with infinite strategy sets, but the payoff is finite?"
+theme: "strategy-game"
+excerpt: "This question challenges our intuition about equilibria in infinite games, where traditional strategies might not suffice."
+keywords: [Recursion Theory, Constructive, Myth-Busting, game, equilibrium, strategy]
+---
+-->
+
+<article class="ai-article">
+  <header class="article-header">
+    <h1>What if the game of strategy is played with infinite strategy sets, but the payoff is finite?</h1>
+    <p class="lead">The game of strategy is a classic problem in game theory, but what happens when the strategy sets are infinite?</p>
+    <p class="posed-question"><strong>Question.</strong> What if the game of strategy is played with infinite strategy sets, but the payoff is finite?</p>
+  </header>
+
+  <section class="content-section">
+    <h2>Make the question precise</h2>
+    <p>In the realm of Recursive Theory, consider a game where players choose their strategies from an infinite set, but the payoff is always a finite number. This scenario challenges traditional equilibrium concepts.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Work an example, a counterexample, or a special case</h2>
+    <p>Let's illustrate with a simple example. Suppose two players, Alice and Bob, play a game where each can choose to either "cooperate" or "defect." The strategy set for each is all real numbers, representing cooperation levels or defection levels, respectively. The payoff function is given by:</p>
+    <div class="code-block">
+      <pre>
+        <code>
+def payoff(coop, defection):
+    # Payoff function example
+    if coop == defection:
+        return 1
+    else:
+        return 0
+        </code>
+      </pre>
+    </div>
+    <p>Here, a payoff of 1 represents a win, and 0 represents a loss. This simple example shows that a strategy that always cooperates (coop = 1) or always defects (coop = -1) is a Nash equilibrium because no player can improve their payoff by unilaterally changing their strategy.</p>
+    <aside class="fun-fact">
+      <span class="icon">π</span>
+      <div class="fact-text">However, this example breaks down in a more complex scenario where the strategy set is the set of all real numbers, and the payoff is always a fixed finite number, challenging the notion of a pure Nash equilibrium.</div>
+    </aside>
+  </section>
+
+  <section class="content-section">
+    <h2>What would count as an answer</h2>
+    <p>What we seek is a deeper understanding of the conditions under which a finite payoff can lead to a non-trivial Nash equilibrium in an infinite strategy game. The answer lies in exploring the structure of the strategy sets and the properties of the payoff function.</p>
+    <figure class="pull-quote">
+      <blockquote>"In an infinite game, even a finite payoff can lead to surprising outcomes, challenging the intuitive notion of equilibrium."</blockquote>
+    </figure>
+  </section>
+
+  <footer class="thematic-pondering">
+    <h2>Left on the chalkboard</h2>
+    <p>How can we extend our understanding of game theory to handle games with infinite strategy sets and finite payoffs?</p>
+    <div class="pondering-question">
+      <strong>Take-home question:</strong> How does the structure of the payoff function influence the existence of Nash equilibria in infinite strategy games?</div>
+  </footer>
+</article>
+
+<style>
+  .ai-article { line-height: 1.65; }
+  .lead { font-size: 1.2rem; font-weight: 500; }
+  .posed-question { font-size: 1.15rem; border-left: 4px solid var(--accent-color, #c9a227); padding: 0.75rem 1rem; margin: 1.25rem 0; background: rgba(201, 162, 39, 0.08); }
+  .fun-fact { background: rgba(var(--accent-rgb), 0.1); border-left: 4px solid var(--accent-color); padding: 1rem; margin: 1.5rem 0; display: flex; gap: 1rem; }
+  .pull-quote { border: none; margin: 2rem 0; padding: 0; text-align: center; font-style: italic; font-size: 1.35rem; }
+  .pondering-question { border-top: 2px solid var(--accent-color, #c9a227); margin-top: 2rem; padding-top: 1rem; font-size: 1.1rem; }
+</style>

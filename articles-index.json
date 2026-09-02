@@ -1,6 +1,25 @@
 {
   "articles": [
     {
+      "title": "A headline that is the question, or that frames the question",
+      "date": "2026-09-02T17:10:40.000Z",
+      "theme": "strategy-game",
+      "topic": "An open-looking question in Recursion Theory",
+      "contentType": "article",
+      "excerpt": "This question challenges our intuition about equilibria in infinite games, where traditional strategies might not suffice.",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Recursion Theory",
+        "Constructive",
+        "Myth-Busting",
+        "game",
+        "equilibrium",
+        "strategy"
+      ],
+      "path": "2026/09/02/2026-09-02-17-10-40_a-headline-that-is-the-question-or-that-frames-the-question.html"
+    },
+    {
       "title": "The novel question, as one or two plain sentences",
       "date": "2026-09-01T08:36:02.000Z",
       "theme": "chalkboard",
@@ -144,6 +163,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 9,
-  "lastBuilt": "2026-09-01T08:38:51.015Z"
+  "total": 10,
+  "lastBuilt": "2026-09-02T17:13:15.694Z"
 }
