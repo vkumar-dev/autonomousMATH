@@ -5,7 +5,7 @@ This document details the internal design, file structure, and logic of autonomo
 ## Directory Structure
 ```
 autonomousMATH/
-├── .github/workflows/         # GitHub Actions (3:14 PM IST / 09:44 UTC generation & deploy)
+├── .github/workflows/         # GitHub Actions (6:41 PM IST / 13:11 UTC generation & deploy)
 ├── articles/                  # Generated questions in YYYY/MM/DD/ format
 ├── docs/                      # Technical documentation and history
 ├── prompts/                   # AI prompts for question generation

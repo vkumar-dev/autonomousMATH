@@ -33,7 +33,7 @@ Complete step-by-step setup for your autonomous AI mathematics platform.
 ### Enable Workflows
 1. Go to the **Actions** tab.
 2. Enable workflows if prompted.
-3. Schedule: Automatically runs once daily at **3:14 PM IST / 09:44 UTC** (π-time).
+3. Schedule: Automatically runs once daily at **6:41 PM IST / 13:11 UTC**.
 
 ---
 

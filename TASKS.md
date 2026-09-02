@@ -6,7 +6,7 @@ Next steps and planned features for autonomousMATH.
 - [x] **Zero Ollama Local HF Resolver**: Automated selection of public non-gated GGUF models (`model_resolver.py`).
 - [x] **Novel Question Pondering**: Prompts designed to ponder matrix seeds and produce fresh mathematical questions.
 - [x] **KaTeX Math Rendering**: Beautiful mathematical notation throughout articles.
-- [x] **π-Time Workflow Schedule**: Scheduled execution daily at 3:14 PM IST (09:44 UTC).
+- [x] **Scheduled Workflow**: Scheduled execution daily at 6:41 PM IST (13:11 UTC).
 - [ ] **Interactive Chalkboard Solver**: Client-side widget allowing readers to post counterexamples or solutions.
 
 ## Medium Priority

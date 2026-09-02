@@ -8,7 +8,7 @@ This document provides a historical record of the development and setup of auton
 - ✅ **Local llama.cpp Inference**: Added `scripts/hf_inference.py` for tokenless model downloading and local execution.
 - ✅ **Novel Question Invention**: Pondering prompt tuned to invent fresh mathematical questions and avoid textbook duplication.
 - ✅ **KaTeX Integration**: Client-side LaTeX formula rendering.
-- ✅ **π-Time Workflow Schedule**: GitHub Actions scheduled daily at 3:14 PM IST (09:44 UTC).
+- ✅ **Scheduled Workflow**: GitHub Actions scheduled daily at 6:41 PM IST (13:11 UTC).
 - ✅ **Branding Transition**: Full re-branding from autonomousBLOG to autonomousMATH.
 
 ---

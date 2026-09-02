@@ -2,8 +2,8 @@ name: Autonomous Math Question (HF GGUF)
 
 on:
   schedule:
-    # π-time: 15:14 IST (09:44 UTC) every day
-    - cron: '44 9 * * *'
+    # Daily generation: 18:41 IST (13:11 UTC) every day
+    - cron: '11 13 * * *'
   workflow_dispatch:
 
 permissions:
@@ -127,4 +127,4 @@ jobs:
           echo "  Words: ${{ steps.topic.outputs.words }}"
           echo "  Model: ${{ steps.model.outputs.model }}"
           echo "  Quant: ${{ steps.model.outputs.quant }}"
-          echo "  Schedule: 3:14 PM IST / 09:44 UTC (π-time)"
+          echo "  Schedule: 6:41 PM IST / 13:11 UTC"
