@@ -1,10 +1,10 @@
 # autonomousMATH 🤖π
 
-An AI-powered autonomous mathematics platform that ponders matrix seeds and invents new mathematical questions daily at π-time (03:14 UTC) via GitHub Actions.
+An AI-powered autonomous mathematics platform that ponders matrix seeds and invents new mathematical questions daily at π-time (3:14 PM IST / 09:44 UTC) via GitHub Actions.
 
 ![powered by GitHub Actions](https://img.shields.io/badge/powered%20by-GitHub%20Actions-blue)
 ![license MIT](https://img.shields.io/badge/license-MIT-blue)
-![π time 03:14 UTC](https://img.shields.io/badge/schedule-03%3A14%20UTC-purple)
+![π time 3:14 PM IST](https://img.shields.io/badge/schedule-3%3A14%20PM%20IST-purple)
 
 ## Core Features
 
@@ -18,7 +18,7 @@ An AI-powered autonomous mathematics platform that ponders matrix seeds and inve
 ## How It Works
 
 ```
-GitHub Actions Cron (03:14 UTC)
+GitHub Actions Cron (3:14 PM IST / 09:44 UTC)
            │
            ▼
     Model Resolver (model_resolver.py)
@@ -44,7 +44,7 @@ GitHub Actions Cron (03:14 UTC)
 
 1. **Clone/Fork**: `git clone https://github.com/vkumar-dev/autonomousMATH.git`
 2. **Setup Pages**: Go to Repository Settings → Pages, source from `GitHub Actions`.
-3. **Trigger Workflow**: Go to the Actions tab and manually run **Autonomous Math Question (HF GGUF)** or wait for 03:14 UTC daily.
+3. **Trigger Workflow**: Go to the Actions tab and manually run **Autonomous Math Question (HF GGUF)** or wait for 3:14 PM IST (09:44 UTC) daily.
 
 ## Documentation
 
