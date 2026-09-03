@@ -2,6 +2,25 @@
   "articles": [
     {
       "title": "A headline that is the question, or that frames the question",
+      "date": "2026-09-03T17:03:13.000Z",
+      "theme": "forest-calm",
+      "topic": "The foundational side of Real Analysis",
+      "contentType": "article",
+      "excerpt": "A martingale with a twist on concentration fails to hold, challenging the foundational side of Real Analysis.",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Real Analysis",
+        "Foundational",
+        "Counterexample Hunt",
+        "probability",
+        "expectation",
+        "martingale"
+      ],
+      "path": "2026/09/03/2026-09-03-17-03-13_a-headline-that-is-the-question-or-that-frames-the-question.html"
+    },
+    {
+      "title": "A headline that is the question, or that frames the question",
       "date": "2026-09-02T17:10:40.000Z",
       "theme": "strategy-game",
       "topic": "An open-looking question in Recursion Theory",
@@ -163,6 +182,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 10,
-  "lastBuilt": "2026-09-02T17:13:15.694Z"
+  "total": 11,
+  "lastBuilt": "2026-09-03T17:05:58.151Z"
 }

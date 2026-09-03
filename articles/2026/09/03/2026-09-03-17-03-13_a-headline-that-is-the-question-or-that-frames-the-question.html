@@ -1,0 +1,58 @@
+<!--
+---
+title: "A headline that is the question, or that frames the question"
+topic: "The foundational side of Real Analysis"
+question: "The novel question, as one or two plain sentences"
+theme: "forest-calm"
+excerpt: "A martingale with a twist on concentration fails to hold, challenging the foundational side of Real Analysis."
+keywords: [Real Analysis, Foundational, Counterexample Hunt, probability, expectation, martingale]
+---
+-->
+
+<article class="ai-article">
+  <header class="article-header">
+    <h1>A martingale with a twist on concentration fails to hold</h1>
+    <p class="lead">What happens when we apply a concentration inequality to a martingale that's not quite a martingale?</p>
+    <p class="posed-question"><strong>Question.</strong> Can a martingale satisfy a concentration inequality if the inequality requires the martingale to be nonnegative?</p>
+  </header>
+
+  <section class="content-section">
+    <h2>Make the question precise</h2>
+    <p>In the foundational side of Real Analysis, a martingale is a sequence of random variables \( X_0, X_1, X_2, \ldots \) such that \( \mathbb{E}[X_{n+1} \mid X_0, X_1, \ldots, X_n] = X_n \) for all \( n \). A concentration inequality provides a bound on the deviation of \( X_n \) from its mean.</p>
+    <p>Consider a martingale \( M_n \) with values in \( \mathbb{R} \). Can \( M_n \) satisfy the concentration inequality \( \mathbb{P}(M_n \geq t) \leq \mathbb{P}(M_n \geq 0) \) for all \( t \)?</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Work an example, a counterexample, or a special case</h2>
+    <p>Let's explore this with a simple example. Consider a martingale \( M_n \) defined by \( M_n = X_n - \mathbb{E}[X_n \mid X_0, X_1, \ldots, X_{n-1}] \), where \( X_n \) are independent and identically distributed (i.i.d.) random variables with \( \mathbb{E}[X_n] = 0 \) and \( \text{Var}(X_n) = 1 \).</p>
+    <aside class="fun-fact">
+      <span class="icon">π</span>
+      <div class="fact-text">For this martingale \( M_n \), \( \mathbb{E}[M_n] = 0 \) and \( \text{Var}(M_n) = n \). The concentration inequality \( \mathbb{P}(M_n \geq t) \leq \mathbb{P}(M_n \geq 0) \) fails because \( M_n \) can be negative for \( n > 0 \).</div>
+    </aside>
+  </section>
+
+  <section class="content-section">
+    <h2>What would count as an answer</h2>
+    <p>The martingale \( M_n \) fails to satisfy the concentration inequality \( \mathbb{P}(M_n \geq t) \leq \mathbb{P}(M_n \geq 0) \) for all \( t \). This counterexample demonstrates that a concentration inequality for a martingale requires the martingale to be nonnegative.</p>
+    <figure class="pull-quote">
+      <blockquote>"This counterexample shows the importance of the nonnegativity condition in concentration inequalities."</blockquote>
+    </figure>
+  </section>
+
+  <footer class="thematic-pondering">
+    <h2>Left on the chalkboard</h2>
+    <p>The foundational side of Real Analysis is robust, but the failure of a concentration inequality to hold for a nonnegative martingale challenges our understanding of how random variables can be controlled.</p>
+    <div class="pondering-question">
+      <strong>Take-home question:</strong> Can a martingale with values in \( \mathbb{R} \) satisfy a concentration inequality if the inequality requires the martingale to be nonnegative?</p>
+    </div>
+  </footer>
+</article>
+
+<style>
+  .ai-article { line-height: 1.65; }
+  .lead { font-size: 1.2rem; font-weight: 500; }
+  .posed-question { font-size: 1.15rem; border-left: 4px solid var(--accent-color, #c9a227); padding: 0.75rem 1rem; margin: 1.25rem 0; background: rgba(201, 162, 39, 0.08); }
+  .fun-fact { background: rgba(var(--accent-rgb), 0.1); border-left: 4px solid var(--accent-color); padding: 1rem; margin: 1.5rem 0; display: flex; gap: 1rem; }
+  .pull-quote { border: none; margin: 2rem 0; padding: 0; text-align: center; font-style: italic; font-size: 1.35rem; }
+  .pondering-question { border-top: 2px solid var(--accent-color, #c9a227); margin-top: 2rem; padding-top: 1rem; font-size: 1.1rem; }
+</style>
