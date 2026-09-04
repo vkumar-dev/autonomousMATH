@@ -1,98 +1,22 @@
-/* Chalkboard — dark mathematical theme */
-.theme-black {
-  --bg-primary: #10231c;
-  --bg-secondary: #163028;
-  --bg-tertiary: #1c3b31;
-  --text-primary: #f4efe2;
-  --text-secondary: #d4cbb3;
-  --text-tertiary: #9a917c;
-  --accent-primary: #e8c547;
-  --accent-secondary: #9ad7c8;
-  --accent-tertiary: #f4efe2;
-  --card-bg: rgba(16, 35, 28, 0.88);
-  --card-border: rgba(232, 197, 71, 0.18);
+/* autonomousMATH — Night notebook palette (midnight study) */
+body.theme-black {
+  --bg-primary: #16181c;
+  --bg-secondary: #1c2027;
+  --bg-tertiary: #242a33;
+  --text-primary: #ece7da;
+  --text-secondary: #b8af9e;
+  --text-tertiary: #7f786b;
+  --accent-primary: #d06a49;
+  --accent-primary-rgb: 208, 106, 73;
+  --accent-secondary: #86a9cf;
+  --accent-tertiary: #7fbfa2;
+  --card-bg: rgba(28, 32, 39, 0.92);
+  --card-border: rgba(208, 106, 73, 0.2);
   --shadow-color: rgba(0, 0, 0, 0.45);
-  --glow-color: rgba(232, 197, 71, 0.28);
-}
-
-.theme-black {
-  background:
-    radial-gradient(circle at 18% 80%, rgba(154, 215, 200, 0.08) 0%, transparent 42%),
-    radial-gradient(circle at 82% 16%, rgba(232, 197, 71, 0.08) 0%, transparent 40%),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.018) 0 1px,
-      transparent 1px 32px
-    ),
-    #10231c;
+  --glow-color: rgba(208, 106, 73, 0.18);
+  --nav-border: rgba(236, 231, 218, 0.14);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-speed: 0.3s;
+  background-color: var(--bg-primary);
   color: var(--text-primary);
-}
-
-.theme-black::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 80%, rgba(154, 215, 200, 0.04) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(232, 197, 71, 0.04) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.theme-black .hero {
-  background: linear-gradient(180deg, rgba(232, 197, 71, 0.05) 0%, transparent 100%);
-}
-
-.theme-black .logo-icon {
-  color: var(--accent-primary);
-}
-
-.theme-black .logo-text {
-  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 18px rgba(232, 197, 71, 0.35));
-}
-
-.theme-black .article-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  backdrop-filter: blur(10px);
-}
-
-.theme-black .article-type {
-  background: rgba(232, 197, 71, 0.12);
-  color: var(--accent-primary);
-}
-
-.theme-black .article-card:hover {
-  box-shadow: 0 20px 60px var(--shadow-color),
-              0 0 40px var(--glow-color);
-}
-
-.theme-black .loading-spinner {
-  border-color: var(--bg-tertiary);
-  border-top-color: var(--accent-primary);
-}
-
-.theme-black .status-badge {
-  background: rgba(232, 197, 71, 0.12);
-  color: var(--accent-primary);
-  border: 1px solid rgba(232, 197, 71, 0.3);
-}
-
-.theme-black .status-pulse {
-  background: var(--accent-secondary);
-  box-shadow: 0 0 8px var(--accent-secondary);
-}
-
-.theme-black .articles-count {
-  background: rgba(154, 215, 200, 0.1);
-  color: var(--accent-secondary);
-}
-
-.theme-black ::selection {
-  background: var(--accent-primary);
-  color: #10231c;
 }

@@ -20,9 +20,10 @@ autonomousMATH/
 ├── articles/              # Generated math articles
 ├── prompts/               # AI prompts for math questions
 ├── scripts/               # JavaScript & Python model resolver utilities
-├── styles/                # CSS themes
-├── templates/             # HTML templates
-└── index.html             # Homepage
+├── styles/                # Shared notebook design system (day/night palettes)
+├── index.html             # Homepage (the notebook feed)
+├── articles-list.html     # Archive of every question
+└── view-article.html      # Single-question reader
 ```
 
 ## Development Workflow
@@ -56,9 +57,8 @@ autonomousMATH/
 ### High Priority
 
 1. **Topic Sources**: Integrate real-time trending topic APIs
-2. **Theme Variations**: Create new article themes
-3. **Prompt Improvement**: Enhance AI prompt quality
-4. **Accessibility**: Improve screen reader support, keyboard navigation
+2. **Prompt Improvement**: Enhance AI prompt quality
+3. **Accessibility**: Improve screen reader support, keyboard navigation
 
 ### Medium Priority
 
@@ -69,25 +69,10 @@ autonomousMATH/
 
 ### Low Priority
 
-1. **Additional Themes**: More homepage/article themes
-2. **Documentation**: Improve guides and examples
-3. **Testing**: Add automated tests
+1. **Documentation**: Improve guides and examples
+2. **Testing**: Add automated tests
 
 ## Making Changes
-
-### Adding a New Theme
-
-1. Create CSS file: `styles/article-your-theme.css`
-2. Follow existing theme pattern
-3. Add theme to `scripts/generate-article.js`:
-   ```javascript
-   const ARTICLE_THEMES = [
-     // ... existing themes
-     'your-theme'
-   ];
-   ```
-4. Update template if needed
-5. Test with sample article
 
 ### Improving Prompts
 
@@ -109,8 +94,8 @@ autonomousMATH/
 ### PR Title
 
 Use conventional commits format:
-- `feat: Add new article theme`
-- `fix: Correct theme switching bug`
+- `feat: Improve the daily question pipeline`
+- `fix: Correct day/night theme switching`
 - `docs: Update setup instructions`
 - `refactor: Improve topic selector logic`
 

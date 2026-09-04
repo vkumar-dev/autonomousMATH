@@ -7,8 +7,9 @@ on:
     paths:
       - 'articles/**'
       - 'index.html'
+      - 'articles-list.html'
+      - 'view-article.html'
       - 'styles/**'
-      - 'templates/**'
       - 'scripts/**'
   workflow_run:
     workflows:

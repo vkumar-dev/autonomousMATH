@@ -16,13 +16,13 @@ class ArticleViewer {
   extractArticlePathFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const article = params.get('article');
-    
+
     if (!article) {
       // Try from hash
       const hash = window.location.hash.slice(1);
       if (hash) return hash;
     }
-    
+
     return article;
   }
 
@@ -39,10 +39,10 @@ class ArticleViewer {
       // Load content
       const rawContent = await this.loadContent();
       const { frontmatter, content } = this.parseContent(rawContent);
-      
+
       // Render HTML
       this.renderArticle(frontmatter, content);
-      
+
     } catch (error) {
       console.error('Error loading article:', error);
       this.showError(`Failed to load article: ${error.message}`);
@@ -54,14 +54,14 @@ class ArticleViewer {
    */
   async loadContent() {
     console.log('[ArticleViewer] Loading article:', this.articlePath);
-    
+
     try {
       // First, try to load from content cache
       const cacheResponse = await fetch('articles-content.json');
       if (cacheResponse.ok) {
         const contentCache = await cacheResponse.json();
         const content = contentCache[this.articlePath];
-        
+
         if (content) {
           return content;
         }
@@ -69,21 +69,21 @@ class ArticleViewer {
     } catch (error) {
       console.warn('[ArticleViewer] Content cache error:', error.message);
     }
-    
+
     // Fallback: try direct file fetch
     try {
       let response = await fetch(`articles/${this.articlePath}`);
       if (!response.ok) {
         response = await fetch(this.articlePath);
       }
-      
+
       if (response.ok) {
         return await response.text();
       }
     } catch (error) {
       console.warn('[ArticleViewer] Direct fetch failed:', error.message);
     }
-    
+
     throw new Error(`Could not load article: ${this.articlePath}`);
   }
 
@@ -96,18 +96,18 @@ class ArticleViewer {
       .replace(/^\s*```(?:markdown|html)?\s*\n/i, '')
       .replace(/^\s*```\s*\n/i, '')
       .replace(/\n\s*```\s*$/i, '');
-     
+
      // Robust pattern for HTML with Frontmatter (handles truncated files)
      // First try to find the frontmatter block
      const frontmatterMatch = cleaned.match(/^(?:<!--\s*\n)?---\n([\s\S]*?)\n---(?:\n\s*-->)?/);
-     
+
      if (!frontmatterMatch) {
        // Fallback for very simple markdown or missing frontmatter
        return { frontmatter: {}, content: cleaned };
      }
 
      const frontmatter = this.parseFrontmatterBlock(frontmatterMatch[1]);
-     
+
      // Content is everything after the frontmatter match
      let content = cleaned.slice(frontmatterMatch[0].length).trim();
 
@@ -191,7 +191,9 @@ class ArticleViewer {
    * Render article to page
    */
   renderArticle(frontmatter, content) {
-    const html = this.markdownToHtml(content);
+    // The model's own <style> blocks would fight the site's design — drop them
+    const cleaned = content.replace(/<style[\s\S]*?<\/style>/gi, '');
+    const html = this.markdownToHtml(cleaned);
     const now = new Date(frontmatter.date || new Date());
     const formattedDate = now.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     const timeInfo = typeof TimeFormatter !== 'undefined' ? TimeFormatter.getFullTimeInfo(now) : { dateTime: formattedDate, relativeTime: 'recently', fullText: 'Generated recently' };
@@ -199,16 +201,23 @@ class ArticleViewer {
     const articleHtml = `
       <article class="article-page">
         <nav class="article-nav">
-          <a href="index.html" class="nav-home"><span class="nav-icon">←</span><span class="nav-text">autonomousMATH</span></a>
-          <a href="index.html?view=list" class="nav-articles"><span class="nav-text">View All Questions</span><span class="nav-icon">📰</span></a>
+          <div class="nav-inner">
+            <a href="index.html" class="nav-home">
+              <span class="nav-mark" aria-hidden="true">π</span>
+              <span class="nav-text">autonomousMATH</span>
+            </a>
+            <div class="nav-actions">
+              <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode">🌙 Dark</button>
+              <a href="articles-list.html" class="nav-link">All questions</a>
+            </div>
+          </div>
         </nav>
 
         <header class="article-header">
           <div class="header-content">
-            <div class="article-meta">
-              <span class="meta-type">${this.escapeHtml(frontmatter.contentType || 'Question')}</span>
-              <span class="meta-theme">${this.escapeHtml(frontmatter.theme || 'default')}</span>
-              <span class="meta-date" title="${timeInfo.dateTime}">${timeInfo.relativeTime}</span>
+            <div class="article-kicker">
+              <span class="kicker-chip">${this.escapeHtml(frontmatter.contentType || 'Question')}</span>
+              <span class="kicker-date" title="${this.escapeHtml(timeInfo.fullText)}">${timeInfo.dateTime}</span>
             </div>
             <h1 class="article-title">${this.escapeHtml(frontmatter.title || 'Untitled')}</h1>
             <p class="article-excerpt">${this.escapeHtml(frontmatter.excerpt || '')}</p>
@@ -216,28 +225,76 @@ class ArticleViewer {
         </header>
 
         <main class="article-content">
+          <div class="article-rule" aria-hidden="true"></div>
           <div id="article-body">${html}</div>
-          <footer class="article-footer">
-            <p class="generated-info"><span class="bot-icon">🤖</span> This question was autonomously generated by autonomousMATH</p>
-            <p class="generation-date">${timeInfo.fullText}</p>
-          </a>
-          </footer>
         </main>
+
+        <footer class="article-footer">
+          <div class="article-footer-inner">
+            <p class="generated-info">🤖 Autonomously generated by autonomousMATH · ${timeInfo.fullText}</p>
+            <a href="index.html" class="btn-back">← Back to the notebook</a>
+          </div>
+        </footer>
       </article>
     `;
 
     document.body.innerHTML = articleHtml;
-    document.title = `${frontmatter.title || 'Question'} - autonomousMATH`;
-    this.applyTheme(frontmatter.theme);
+    document.title = `${frontmatter.title || 'Question'} — autonomousMATH`;
+    this.applyPersistedTheme();
+    this.wireThemeToggle();
     if (typeof window.renderMath === 'function') {
       window.renderMath(document.body);
     }
   }
 
-  applyTheme(theme) {
-    document.body.classList.remove('theme-white', 'theme-black');
-    const themeClass = theme ? `theme-${theme.split('-')[0]}` : (Math.random() > 0.5 ? 'theme-white' : 'theme-black');
-    document.body.classList.add(themeClass, 'theme-loaded');
+  /**
+   * article-viewer replaces the whole body, so the day/night toggle must be
+   * re-bound here (the initial theme-manager wiring ran against the loader).
+   */
+  wireThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', () => {
+      if (typeof window.themeManager !== 'undefined' && window.themeManager.toggleTheme) {
+        window.themeManager.toggleTheme();
+      } else {
+        this.toggleFallbackTheme();
+      }
+    });
+    // Reflect the current theme in the label
+    const current = typeof window.themeManager !== 'undefined' && window.themeManager.getCurrentTheme
+      ? window.themeManager.getCurrentTheme()
+      : null;
+    if (current === 'theme-black') {
+      toggle.textContent = '☀️ Light';
+    } else {
+      toggle.textContent = '🌙 Dark';
+    }
+  }
+
+  toggleFallbackTheme() {
+    document.body.classList.toggle('theme-white');
+    document.body.classList.toggle('theme-black');
+    const toggle = document.getElementById('theme-toggle');
+    if (toggle) {
+      toggle.textContent = document.body.classList.contains('theme-black') ? '☀️ Light' : '🌙 Dark';
+    }
+  }
+
+  /**
+   * The site follows the reader's saved day/night preference (theme-manager),
+   * never a per-article decorative theme. Make sure a valid one is present.
+   */
+  applyPersistedTheme() {
+    let theme = null;
+    if (typeof window.themeManager !== 'undefined' && window.themeManager.getCurrentTheme) {
+      theme = window.themeManager.getCurrentTheme();
+    }
+    if (theme !== 'theme-white' && theme !== 'theme-black') {
+      theme = 'theme-white';
+    }
+    document.body.classList.remove('theme-white', 'theme-black', 'theme-loading');
+    document.body.classList.add(theme, 'theme-loaded');
   }
 
   escapeHtml(text) {

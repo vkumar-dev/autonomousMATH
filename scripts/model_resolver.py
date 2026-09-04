@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Discover a public, non-gated, llama.cpp-compatible GGUF model.
 
-Follows RESEARCH.md: no Hugging Face token, no Ollama, no hardcoded model id.
-Hard filters first, then a weighted score over task fit, recency, downloads,
-and CPU-friendly size. Writes selected-model.json.
+Follows the autonomousMATH model resolver architecture: no Hugging Face token,
+no Ollama, no hardcoded model id. Hard filters first, then an "always latest" policy: the newest usable
+chat/instruct GGUF wins, with step-down credibility gates so a daily flood
+of zero-download uploads cannot break the pipeline.
+Writes selected-model.json.
 """
 
 from __future__ import annotations
@@ -12,6 +14,7 @@ import json
 import math
 import os
 import re
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -25,14 +28,20 @@ MIN_PARAMS = os.environ.get("MODEL_MIN_PARAMS", "3B")
 MAX_PARAMS = os.environ.get("MODEL_MAX_PARAMS", "7B")
 MAX_FILE_BYTES = int(os.environ.get("MODEL_MAX_BYTES", str(4_800_000_000)))
 CANDIDATE_LIMIT = int(os.environ.get("MODEL_CANDIDATE_LIMIT", "24"))
+# "Always the latest" policy knobs. Hugging Face receives thousands of new
+# (often zero-download) GGUF uploads per day, so we take the NEWEST model that
+# still clears a minimal credibility gate; the gate relaxes in stages so
+# discovery never stalls on a day full of throwaway uploads.
+MODEL_MIN_DOWNLOADS = int(os.environ.get("MODEL_MIN_DOWNLOADS", "25"))
 
-SEARCHES = ("instruct", "reasoning", "math", "coder")
+SEARCHES = ("instruct", "reasoning", "creative", "coder")
 TASK_KEYWORDS = (
     "instruct",
     "chat",
     "reason",
+    "creative",
+    "art",
     "thinking",
-    "math",
     "code",
     "coder",
     "agent",
@@ -49,7 +58,24 @@ SKIP_NAME_BITS = (
     "classifier",
     "tts",
     "asr",
+    "vision",
+    "vlm",
+    "multimodal",
+    "image",
+    "ocr",
+    "audio",
 )
+# llama.cpp text generation only - multimodal/speech/image models are unusable.
+SKIP_PIPELINES = {
+    "image-text-to-text",
+    "text-to-image",
+    "text-to-speech",
+    "automatic-speech-recognition",
+    "audio-to-audio",
+    "any-to-any",
+    "image-to-image",
+    "image-to-text",
+}
 KNOWN_PACKAGERS = (
     "bartowski",
     "unsloth",
@@ -63,6 +89,11 @@ KNOWN_PACKAGERS = (
     "thebloke",
     "ggml-org",
 )
+# Reputable quantizers / orgs of mainstream current-gen base models. Repos
+# created here are far more likely to be "the latest Qwen/Llama/Gemma" than a
+# one-off community fine-tune of the same vintage.
+PACKAGER_TIER_1 = ("bartowski", "unsloth", "hugging-quants", "lmstudio-community", "ggml-org")
+PACKAGER_TIER_2 = ("qwen", "microsoft", "google", "meta-llama", "huggingfacetb", "thebloke")
 QUANT_PREF = [
     "Q4_K_M",
     "Q4_K_S",
@@ -83,13 +114,24 @@ def log(message: str) -> None:
     print(message, file=sys.stderr, flush=True)
 
 
+def get_hf_binary() -> str:
+    path = shutil.which("hf")
+    if path:
+        return path
+    home_hf = Path.home() / ".local" / "bin" / "hf"
+    if home_hf.exists():
+        return str(home_hf)
+    return "hf"
+
+
 def run_hf(args: list[str]) -> Any:
     env = os.environ.copy()
     env.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")
     # Public/non-gated discovery must not send a token.
     env.pop("HF_TOKEN", None)
     env.pop("HUGGING_FACE_HUB_TOKEN", None)
-    cmd = ["hf", *args]
+    hf_bin = get_hf_binary()
+    cmd = [hf_bin, *args]
     result = subprocess.run(
         cmd,
         check=False,
@@ -99,7 +141,7 @@ def run_hf(args: list[str]) -> Any:
     )
     if result.returncode != 0:
         raise RuntimeError(
-            f"hf {' '.join(args)} failed ({result.returncode}): "
+            f"{hf_bin} {' '.join(args)} failed ({result.returncode}): "
             f"{result.stderr.strip() or result.stdout.strip()}"
         )
     text = result.stdout.strip()
@@ -139,6 +181,9 @@ def is_skipped_model(model: dict[str, Any]) -> bool:
         return True
     ident = str(model.get("id") or "").lower()
     blob = model_blob(model)
+    pipeline = str(model.get("pipeline_tag") or "").lower()
+    if pipeline in SKIP_PIPELINES:
+        return True
     if any(bit in ident or bit in blob for bit in SKIP_NAME_BITS):
         return True
     return False
@@ -228,13 +273,39 @@ def task_score(model: dict[str, Any]) -> float:
     return min(1.0, hits / 3.0)
 
 
+def created_stamp(model: dict[str, Any]) -> datetime | None:
+    return parse_dt(model.get("created_at") or model.get("last_modified"))
+
+
+def latest_pool(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Newest-first candidate pool with step-down credibility gates.
+
+    Pool 1: chat/instruct models from top quantizers or with real traction.
+    Pool 2: any chat/instruct model with a hint of engagement.
+    Pool 3: any chat/instruct model at all.
+    Pool 4: everything else (last resort so discovery never fails).
+    """
+    is_chat = lambda m: task_score(m) > 0.0  # noqa: E731
+    downloads = lambda m: int(m.get("downloads") or 0)  # noqa: E731
+    pools = [
+        [m for m in candidates if is_chat(m) and (downloads(m) >= MODEL_MIN_DOWNLOADS or packager_bonus(m) >= 1.0)],
+        [m for m in candidates if is_chat(m) and (downloads(m) >= 5 or packager_bonus(m) >= 0.5)],
+        [m for m in candidates if is_chat(m)],
+        list(candidates),
+    ]
+    for index, pool in enumerate(pools):
+        if pool:
+            log(f"Latest-model policy: pool {index + 1} has {len(pool)} usable repos")
+            return pool
+    return candidates
+
+
 def recency_score(model: dict[str, Any]) -> float:
-    stamp = parse_dt(model.get("created_at") or model.get("last_modified"))
+    stamp = created_stamp(model)
     if stamp is None:
-        return 0.2
+        return 0.0
     age_days = max(0.0, (datetime.now(timezone.utc) - stamp).total_seconds() / 86400.0)
-    # 1.0 if brand new, ~0.5 at 180 days, near 0 after ~2 years.
-    return math.exp(-age_days / 180.0)
+    return math.exp(-age_days / 60.0)
 
 
 def popularity_score(model: dict[str, Any]) -> float:
@@ -250,7 +321,15 @@ def popularity_score(model: dict[str, Any]) -> float:
 def packager_bonus(model: dict[str, Any]) -> float:
     ident = str(model.get("id") or "").lower()
     org = ident.split("/", 1)[0]
-    return 1.0 if org in KNOWN_PACKAGERS else 0.0
+    if org in PACKAGER_TIER_1:
+        return 1.0
+    if org in PACKAGER_TIER_2:
+        return 0.85
+    if org == "mradermacher":
+        return 0.5
+    if org in KNOWN_PACKAGERS:
+        return 0.7
+    return 0.0
 
 
 def size_score(model: dict[str, Any]) -> float:
@@ -260,7 +339,6 @@ def size_score(model: dict[str, Any]) -> float:
         size = int(gguf.get("totalFileSize") or gguf.get("total") or 0)
     if size <= 0:
         return 0.5
-    # Prefer ~2–3.5GB Q4 3B–4B files on GitHub-hosted CPU runners.
     gb = size / 1e9
     if gb <= 0.8:
         return 0.4
@@ -272,13 +350,13 @@ def size_score(model: dict[str, Any]) -> float:
 
 
 def score_model(model: dict[str, Any]) -> float:
-    # RESEARCH.md suggested mix, tuned for CPU GitHub Actions.
+    quality = 0.6 * packager_bonus(model) + 0.4 * popularity_score(model)
     return (
-        0.30 * task_score(model)
-        + 0.20 * (0.6 * packager_bonus(model) + 0.4 * popularity_score(model))
-        + 0.15 * popularity_score(model)
-        + 0.15 * recency_score(model)
-        + 0.10 * size_score(model)
+        0.20 * task_score(model)
+        + 0.28 * quality
+        + 0.12 * popularity_score(model)
+        + 0.16 * recency_score(model)
+        + 0.14 * size_score(model)
         + 0.10 * (1.0 if "instruct" in model_blob(model) else 0.4)
     )
 
@@ -336,8 +414,17 @@ def resolve() -> dict[str, Any]:
     candidates = discover_candidates()
     if not candidates:
         raise RuntimeError("No public non-gated llama.cpp models matched the filters.")
+    candidates = latest_pool(candidates)
+    if not candidates:
+        raise RuntimeError("No public non-gated llama.cpp models matched the filters.")
 
-    scored = sorted(candidates, key=score_model, reverse=True)
+    # Strictly newest-first. Same-day ties fall back to the quality score so a
+    # torrent of zero-engagement uploads cannot displace a flagship model.
+    scored = sorted(
+        candidates,
+        key=lambda m: (created_stamp(m) or datetime.min, score_model(m)),
+        reverse=True,
+    )
     log(f"Ranked {len(scored)} candidate repos. Probing GGUF files…")
 
     errors: list[str] = []

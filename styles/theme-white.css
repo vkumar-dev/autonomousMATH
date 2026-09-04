@@ -1,91 +1,23 @@
-/* Paper and ink — light mathematical theme */
-.theme-white {
-  --bg-primary: #f7f3e8;
-  --bg-secondary: #efe8d6;
-  --bg-tertiary: #e6dcc4;
-  --text-primary: #1a1710;
-  --text-secondary: #4a4333;
-  --text-tertiary: #7a7160;
-  --accent-primary: #8a5a12;
-  --accent-secondary: #1e3a5f;
-  --accent-tertiary: #2f6f5e;
-  --card-bg: rgba(255, 252, 245, 0.88);
-  --card-border: rgba(138, 90, 18, 0.18);
-  --shadow-color: rgba(30, 23, 12, 0.12);
-  --glow-color: rgba(138, 90, 18, 0.22);
-}
-
-.theme-white {
-  background:
-    radial-gradient(circle at 80% 0%, rgba(138, 90, 18, 0.08), transparent 42%),
-    linear-gradient(180deg, #f7f3e8 0%, #efe8d6 100%);
+/* autonomousMATH — Day notebook palette (warm paper & ink) */
+:root,
+body.theme-white {
+  --bg-primary: #f5f1e6;
+  --bg-secondary: #ece5d4;
+  --bg-tertiary: #e1d7bf;
+  --text-primary: #241f16;
+  --text-secondary: #57503f;
+  --text-tertiary: #8a8070;
+  --accent-primary: #b33d26;
+  --accent-primary-rgb: 179, 61, 38;
+  --accent-secondary: #244a6d;
+  --accent-tertiary: #3f6b58;
+  --card-bg: #fbf7ec;
+  --card-border: rgba(179, 61, 38, 0.16);
+  --shadow-color: rgba(44, 34, 20, 0.12);
+  --glow-color: rgba(179, 61, 38, 0.14);
+  --nav-border: rgba(36, 31, 22, 0.12);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-speed: 0.3s;
+  background-color: var(--bg-primary);
   color: var(--text-primary);
-}
-
-.theme-white .hero {
-  background: linear-gradient(180deg, rgba(30, 58, 91, 0.06) 0%, transparent 100%);
-}
-
-.theme-white .logo-icon {
-  color: var(--accent-primary);
-}
-
-.theme-white .logo-text {
-  background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.theme-white .article-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px var(--shadow-color);
-}
-
-.theme-white .article-type {
-  background: rgba(138, 90, 18, 0.1);
-  color: var(--accent-primary);
-}
-
-.theme-white .article-card:hover {
-  box-shadow: 0 20px 60px var(--shadow-color),
-              0 0 40px var(--glow-color);
-}
-
-.theme-white .loading-spinner {
-  border-color: var(--bg-tertiary);
-  border-top-color: var(--accent-primary);
-}
-
-.theme-white .theme-indicator {
-  background: rgba(138, 90, 18, 0.1);
-  color: var(--accent-primary);
-}
-
-.theme-white .theme-dot {
-  background: var(--accent-primary);
-  box-shadow: 0 0 10px var(--glow-color);
-}
-
-.theme-white .status-badge {
-  background: rgba(47, 111, 94, 0.12);
-  color: var(--accent-tertiary);
-  border: 1px solid rgba(47, 111, 94, 0.28);
-}
-
-.theme-white .status-pulse {
-  background: var(--accent-tertiary);
-  box-shadow: 0 0 8px var(--accent-tertiary);
-}
-
-.theme-white .articles-count {
-  background: rgba(30, 58, 91, 0.08);
-  color: var(--accent-secondary);
-}
-
-.theme-white ::selection {
-  background: var(--accent-primary);
-  color: white;
 }

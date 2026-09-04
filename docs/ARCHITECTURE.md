@@ -16,8 +16,8 @@ autonomousMATH/
 │   ├── generate-article.js    # Article generation coordinator
 │   ├── build-article-index.js # Article index builder
 │   └── build-articles-content.js # Content cache builder
-├── styles/                    # CSS themes for homepage and questions
-└── templates/                 # HTML templates
+├── styles/                    # Shared notebook design system (homepage, reader, day/night palettes)
+└── view-article.html          # Single-question reader page
 ```
 
 ## Generation Pipeline

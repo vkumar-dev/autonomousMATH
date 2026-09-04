@@ -19,10 +19,8 @@ const INDEX_FILE = path.join(ROOT, 'articles-index.json');
 const RESOLVER = path.join(__dirname, 'model_resolver.py');
 const INFERENCE = path.join(__dirname, 'hf_inference.py');
 
-const ARTICLE_THEMES = [
-  'minimalist-clean', 'neon-nights', 'paper-ink', 'ocean-breeze', 'forest-calm',
-  'sunset-vibes', 'matrix-code', 'cotton-candy', 'industrial', 'aurora', 'chalkboard'
-];
+// Single unified notebook style — no per-article decorative themes anymore.
+const ARTICLE_THEME = 'notebook';
 
 function generateSlug(title) {
   return title
@@ -157,7 +155,7 @@ async function generateArticle() {
     ? fs.readFileSync(PROMPT_FILE, 'utf8')
     : 'Ponder {{TOPIC}} and the words {{WORD_LIST}} and invent a new mathematical question.';
 
-  const theme = ARTICLE_THEMES[Math.floor(Math.random() * ARTICLE_THEMES.length)];
+  const theme = ARTICLE_THEME;
   const now = new Date();
   const prior = loadPriorQuestions();
   const priorBlock = prior.length

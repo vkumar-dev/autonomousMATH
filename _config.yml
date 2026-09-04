@@ -7,7 +7,6 @@ exclude:
   - articles/
   - scripts/
   - styles/
-  - templates/
   - prompts/
   - .github/
   - node_modules/
@@ -22,7 +21,6 @@ keep_files:
   - articles
   - scripts
   - styles
-  - templates
   - prompts
   - articles-index.json
   - articles-content.json

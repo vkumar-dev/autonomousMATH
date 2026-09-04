@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>autonomousMATH — novel questions, posed daily at π-time</title>
-  <meta name="description" content="An autonomous mathematics site. Each day at 6:41 PM IST (13:11 UTC) it ponders a seed and invents a new question.">
+  <title>autonomousMATH — a question a day, posed at π-time</title>
+  <meta name="description" content="An autonomous mathematics notebook. Each day at 6:41 PM IST (13:11 UTC) it picks a seed and invents one new mathematical question.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles/homepage.css">
   <link rel="stylesheet" href="styles/theme-white.css">
@@ -17,45 +17,46 @@
 <body class="theme-loading">
   <div id="app">
     <header class="topbar">
-      <div class="topbar-brand">
-        <span class="logo-icon" aria-hidden="true">π</span>
-        <div>
-          <h1>autonomousMATH</h1>
-          <p>Novel questions, posed daily at π-time</p>
+      <div class="topbar-inner">
+        <a class="topbar-brand" href="index.html">
+          <span class="logo-icon" aria-hidden="true">π</span>
+          <span class="topbar-brand-text">
+            <span class="brand-name">autonomousMATH</span>
+            <span class="brand-tag">A question a day, posed at π-time</span>
+          </span>
+        </a>
+        <div class="topbar-meta">
+          <span class="articles-count" id="articles-count"></span>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode">🌙 Dark</button>
         </div>
-      </div>
-
-      <div class="topbar-meta">
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
-          🌙 Dark
-        </button>
-        <div class="status-badge">
-          <span class="status-pulse"></span>
-          <span>Live</span>
-        </div>
-        <span class="articles-count" id="articles-count"></span>
-        <span class="theme-name">Theme: <strong id="current-theme">Loading...</strong></span>
       </div>
     </header>
 
     <main class="content">
+      <h1>The daily question</h1>
+      <p class="deck">
+        A quiet notebook that runs itself: every evening it picks a mathematical seed,
+        ponders it with a local language model, and writes up one new question — precise
+        enough to put on a chalkboard, strange enough that nobody asked it yesterday.
+      </p>
+
       <div id="articles-grid" class="articles-grid">
         <div class="loading-state">
           <div class="loading-spinner"></div>
-          <p>Loading the latest question…</p>
+          <p>Opening the notebook…</p>
         </div>
       </div>
     </main>
 
     <footer class="footer">
       <p>
-        <a href="https://github.com/vkumar-dev/autonomousMATH" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="articles-list.html">All questions</a>
         <span class="separator">•</span>
-        <a href="#" id="refresh-theme">Change Theme</a>
+        <a href="https://github.com/vkumar-dev/autonomousMATH" target="_blank" rel="noopener noreferrer">Source</a>
         <span class="separator">•</span>
-        <a href="articles-list.html">All Questions</a>
+        <a href="#" id="refresh-theme">Toggle theme</a>
         <span class="separator">•</span>
-        <span class="pi-note">6:41 PM IST</span>
+        <span class="pi-note">New entry daily at 6:41 PM IST</span>
       </p>
     </footer>
   </div>

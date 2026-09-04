@@ -12,7 +12,7 @@ An AI-powered autonomous mathematics platform that ponders matrix seeds and inve
 - 📐 **Dynamic Seed Matrix**: Combines mathematical categories, word lists, genres, perspectives, and storytelling methods into seeds.
 - 💡 **Novel Question Focus**: The prompt specifically forces the AI to ponder the matrix seed and invent a fresh question (avoiding textbook re-hashes).
 - 🧩 **Zero Ollama / Pure HF**: Uses an automated open non-gated model resolver based on [`RESEARCH.md`](RESEARCH.md) to discover and run local llama.cpp models inside GitHub Actions runners without requiring API keys or pre-installed servers.
-- 🎨 **KaTeX & Micro-Themes**: Full LaTeX mathematical formula rendering with dark/light themes and customizable reading experiences.
+- 🎨 **KaTeX & Day/Night Notebook**: Full LaTeX mathematical formula rendering in a single quiet notebook style with light/dark palettes.
 - 📄 **GitHub Pages**: Automated deployment directly to GitHub Pages.
 
 ## How It Works

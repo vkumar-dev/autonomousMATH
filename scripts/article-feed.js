@@ -10,7 +10,6 @@ class ArticleFeed {
     this.contentCache = {};
     this.isLoading = false;
     this.observer = null;
-    this.setupIndexCircle();
   }
 
   setupIntersectionObserver() {
@@ -94,11 +93,12 @@ class ArticleFeed {
   createArticlePage(article, isLatest) {
     const rawContent = this.contentCache[article.path] || '';
     
-    // Clean code fences
+    // Clean code fences and strip any <style> blocks the model embedded
     let cleaned = rawContent
       .replace(/^\s*```(?:markdown|html)?\s*\n/i, '')
       .replace(/^\s*```\s*\n/i, '')
-      .replace(/\n\s*```\s*$/i, '');
+      .replace(/\n\s*```\s*$/i, '')
+      .replace(/<style[\s\S]*?<\/style>/gi, '');
      
     // Robust pattern for HTML with Frontmatter
     const frontmatterMatch = cleaned.match(/^(?:<!--\s*\n)?---\n([\s\S]*?)\n---(?:\n\s*-->)?/);
@@ -130,7 +130,7 @@ class ArticleFeed {
             </a>
           </div>
 
-          <h2 class="reel-title">${this.escapeHtml(article.title)}</h2>
+          <h2 class="reel-title"><a href="view-article.html?article=${encodeURIComponent(article.path)}">${this.escapeHtml(article.title)}</a></h2>
 
           <div class="reel-content">${htmlContent}</div>
         </div>
@@ -199,12 +199,6 @@ class ArticleFeed {
     return div.innerHTML;
   }
 
-  setupIndexCircle() {
-    const circleHTML = `
-      <a href="articles-list.html" id="index-circle" title="View all article titles">☰</a>
-    `;
-    document.body.insertAdjacentHTML('beforeend', circleHTML);
-  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
