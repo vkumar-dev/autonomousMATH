@@ -2,6 +2,25 @@
   "articles": [
     {
       "title": "A headline that is the question, or that frames the question",
+      "date": "2026-09-04T16:53:05.000Z",
+      "theme": "ocean-breeze",
+      "topic": "An open-looking question in Continued Fractions",
+      "contentType": "article",
+      "excerpt": "The continued fraction of √2 reveals a pattern of prime gaps that is yet to be fully understood.",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Continued Fractions",
+        "Categorical",
+        "Worked Example",
+        "prime",
+        "gap",
+        "sieve"
+      ],
+      "path": "2026/09/04/2026-09-04-16-53-05_a-headline-that-is-the-question-or-that-frames-the-question.html"
+    },
+    {
+      "title": "A headline that is the question, or that frames the question",
       "date": "2026-09-03T17:03:13.000Z",
       "theme": "forest-calm",
       "topic": "The foundational side of Real Analysis",
@@ -182,6 +201,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 11,
-  "lastBuilt": "2026-09-03T17:05:58.151Z"
+  "total": 12,
+  "lastBuilt": "2026-09-04T16:55:40.619Z"
 }

@@ -1,0 +1,57 @@
+<!--
+---
+title: "A headline that is the question, or that frames the question"
+topic: "An open-looking question in Continued Fractions"
+question: "What prime gaps are hidden in the continued fraction of the square root of two?"
+theme: "ocean-breeze"
+excerpt: "The continued fraction of √2 reveals a pattern of prime gaps that is yet to be fully understood."
+keywords: [Continued Fractions, Categorical, Worked Example, prime, gap, sieve]
+---
+-->
+
+<article class="ai-article">
+  <header class="article-header">
+    <h1>A headline that is the question, or that frames the question</h1>
+    <p class="lead">The hook. Put the question in the reader's hands early.</p>
+    <p class="posed-question"><strong>Question.</strong> What prime gaps are hidden in the continued fraction of the square root of two?</p>
+  </header>
+
+  <section class="content-section">
+    <h2>Make the question precise</h2>
+    <p>The continued fraction expansion of √2 is [1; 2, 2, 2, ...]. This repeating sequence suggests a pattern in the sequence of prime numbers. Specifically, we are interested in the gaps between consecutive primes in this sequence of numerators.</p>
+  </section>
+
+  <section class="content-section">
+    <h2>Work an example, a counterexample, or a special case</h2>
+    <p>To illustrate, consider the first few numerators of √2's continued fraction: 1, 3, 7, 17, 41, 99, 239, 577, ... These are the prime numbers 2, 3, 7, 17, 41, 99, 239, 577, ... Notice the gaps: 2, 4, 10, 24, 80, 218, 540, 1352, ... These gaps are not immediately obvious from the sequence of numerators alone, but they do seem to follow a pattern.</p>
+    <aside class="fun-fact">
+      <span class="icon">π</span>
+      <div class="fact-text">For instance, the gap between 7 and 17 is 10, which is 2 * 5, and the gap between 17 and 41 is 24, which is 2 * 12. This suggests a potential sieve-like mechanism at play, though the exact nature remains a mystery.</div>
+    </aside>
+  </section>
+
+  <section class="content-section">
+    <h2>What would count as an answer</h2>
+    <p>A full answer to this question would require a proof of a conjecture about the distribution of prime gaps in the continued fraction of √2. This could involve deep number theory, including properties of continued fractions, Diophantine approximations, and perhaps even connections to other areas of mathematics like analytic number theory or algebraic geometry.</p>
+    <figure class="pull-quote">
+      <blockquote>"Understanding these gaps could provide new insights into the behavior of prime numbers, potentially revealing a hidden pattern that eludes the most advanced tools in mathematics."</blockquote>
+    </figure>
+  </section>
+
+  <footer class="thematic-pondering">
+    <h2>Left on the chalkboard</h2>
+    <p>This question challenges our intuition about prime numbers and their distribution, inviting us to explore the hidden patterns within the continued fraction of √2.</p>
+    <div class="pondering-question">
+      <strong>Take-home question:</strong> Can you find a similar pattern in the continued fraction of another square root and prove its existence?
+    </div>
+  </footer>
+</article>
+
+<style>
+  .ai-article { line-height: 1.65; }
+  .lead { font-size: 1.2rem; font-weight: 500; }
+  .posed-question { font-size: 1.15rem; border-left: 4px solid var(--accent-color, #c9a227); padding: 0.75rem 1rem; margin: 1.25rem 0; background: rgba(201, 162, 39, 0.08); }
+  .fun-fact { background: rgba(var(--accent-rgb), 0.1); border-left: 4px solid var(--accent-color); padding: 1rem; margin: 1.5rem 0; display: flex; gap: 1rem; }
+  .pull-quote { border: none; margin: 2rem 0; padding: 0; text-align: center; font-style: italic; font-size: 1.35rem; }
+  .pondering-question { border-top: 2px solid var(--accent-color, #c9a227); margin-top: 2rem; padding-top: 1rem; font-size: 1.1rem; }
+</style>
