@@ -2,6 +2,25 @@
   "articles": [
     {
       "title": "A headline that is the question, or that frames the question",
+      "date": "2026-09-05T16:03:56.000Z",
+      "theme": "notebook",
+      "topic": "A toy model in Tropical Geometry",
+      "contentType": "article",
+      "excerpt": "One sentence that states why the question is interesting.",
+      "readingTime": 5,
+      "wordCount": 0,
+      "keywords": [
+        "Tropical Geometry",
+        "Modern",
+        "Toy Model",
+        "random",
+        "matrix",
+        "eigenvalue"
+      ],
+      "path": "2026/09/05/2026-09-05-16-03-56_a-headline-that-is-the-question-or-that-frames-the-question.html"
+    },
+    {
+      "title": "A headline that is the question, or that frames the question",
       "date": "2026-09-04T16:53:05.000Z",
       "theme": "ocean-breeze",
       "topic": "An open-looking question in Continued Fractions",
@@ -201,6 +220,6 @@
       "path": "2026/08/25/2026-08-25-17-34-48_the-dimension-of-the-heat-flow-fractal.html"
     }
   ],
-  "total": 12,
-  "lastBuilt": "2026-09-04T16:55:40.619Z"
+  "total": 13,
+  "lastBuilt": "2026-09-05T16:17:50.575Z"
 }
